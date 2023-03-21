@@ -34,10 +34,11 @@ async function query(tabla, q) {
     
     return col.filter(item => item[key] === q[key])[0] || null;
 }
+
 module.exports = {
     list,
     get,
     upsert,
     remove,
-    query
+    query,
 };

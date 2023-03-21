@@ -1,26 +1,29 @@
-const nanoid = require('nanoid');
-const bycrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
-const auth = require("../../../auth");
-const TABLA = "auth";
-
+const auth = require('../../../auth');
+const TABLA = 'auth';
 
 module.exports = function (injectedStore) {
     let store = injectedStore;
     if (!store) {
         store = require('../../../store/dummy');
     }
-    async function logging(userName, password){
-        const data = await store.query(TABLA, {username:userName});
-        const info = await bycrypt.compare(password, data.password);
-        if(info){
-            return auth.sign(data);
-        }else{
-            throw new Error("Informacion invalida");
-        }
 
+    async function login(username, password) {
+        const data = await store.query(TABLA, { username: username });
+        
+        return bcrypt.compare(password, data.password)
+            .then(sonIguales => {
+                if (sonIguales === true) {
+                    // Generar token;
+                    return auth.sign(data)
+                } else {
+                    throw new Error('Informacion invalida');
+                }
+            });
     }
-  async  function upsert(data) {
+
+    async function upsert(data) {
         const authData = {
             id: data.id,
         }
@@ -30,14 +33,14 @@ module.exports = function (injectedStore) {
         }
 
         if (data.password) {
-            authData.password = await bycrypt.hash(data.password, 5);
+            authData.password = await bcrypt.hash(data.password, 5);
         }
 
         return store.upsert(TABLA, authData);
     }
 
     return {
+        login,
         upsert,
-        logging
     };
 };

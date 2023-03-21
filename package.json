@@ -1,28 +1,26 @@
 {
-  "name": "proyecto-backend-node-platzi",
+  "name": "autenticacion1",
   "version": "1.0.0",
   "description": "Proyecto del curso avanzado de backend con NodeJS",
-  "main": "index.js",
+  "main": "api/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/index.js",
-    "dev": "nodemon api/index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodingCarlos/proyecto-backend-node-platzi.git"
+    "url": "git+https://github.com/PabloSan1997/AutentMicrosRedis.git"
   },
-  "author": "",
+  "author": "Pablo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CodingCarlos/proyecto-backend-node-platzi/issues"
+    "url": "https://github.com/PabloSan1997/AutentMicrosRedis/issues"
   },
-  "homepage": "https://github.com/CodingCarlos/proyecto-backend-node-platzi#readme",
+  "homepage": "https://github.com/PabloSan1997/AutentMicrosRedis#readme",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^9.0.0",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
     "nanoid": "^2.1.7",
     "swagger-ui-express": "^4.1.2"
   }
